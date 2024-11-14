@@ -57,8 +57,9 @@ if (isExternal) {
       const navigate = link.getAttribute("href");
       if (navigate) {
         console.log("go to", navigate);
-        window.ipcRenderer.send("navigate", navigate);
-        // window.location.href = navigate;
+        import.meta.env.PROD
+          ? window.ipcRenderer.send("navigate", navigate)
+          : (window.location.href = navigate);
       }
     });
   });
